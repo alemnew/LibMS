@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application-client version="6" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/application-client_6.xsd">
+  <display-name>LMS-Client</display-name>
+  <ejb-ref>
+    <ejb-ref-name>RegistrationBean</ejb-ref-name>
+    <ejb-ref-type>Session</ejb-ref-type>
+    <remote>org.mk.rc.intf.RegistrationBeanRemote</remote>
+  </ejb-ref>
+  <ejb-ref>
+    <ejb-ref-name>LoginBean</ejb-ref-name>
+    <ejb-ref-type>Session</ejb-ref-type>
+    <remote>org.mk.rc.intf.LoginBeanRemote</remote>
+  </ejb-ref>
+</application-client>
