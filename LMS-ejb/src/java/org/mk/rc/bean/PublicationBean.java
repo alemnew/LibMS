@@ -5,68 +5,74 @@
 package org.mk.rc.bean;
 
 import java.util.List;
-import org.mk.rc.intf.RegistrationBeanRemote;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import org.mk.rc.entity.Publication;
-import org.mk.rc.entity.Staffs;
-import org.mk.rc.entity.Users;
+import org.mk.rc.intf.PublicationBeanRemote;
 
 /**
  *
  * @author alemnew
  */
 @Stateless
-public class RegistrationBean implements RegistrationBeanRemote {
+public class PublicationBean implements PublicationBeanRemote {
     private static long serialVersionUID = 1L;
+
+    /**
+     * @return the serialVersionUID
+     */
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    /**
+     * @param aSerialVersionUID the serialVersionUID to set
+     */
+    public static void setSerialVersionUID(long aSerialVersionUID) {
+        serialVersionUID = aSerialVersionUID;
+    }
     
     @PersistenceContext 
     private EntityManager em;
-    public String registerUser(String fname, String lname, String email, String pswd, String phone, String address){
-        Users user = new Users();
-        user.setfName(fname);
-        user.setlName(lname);
-        user.setEmail(email);
-        user.setPassword(pswd);
-        user.setPhoneNumber(phone);
-        user.setAddress(address);
-        
-        em.persist(user);
-        
-        return "UserRegistered";
-        
-    }
     
-     public String addPublication(String title, String type, String pubDate, String author, String callNumber, String status) {
-        Publication publication = new Publication();
-        publication.setTitle(title);
-        publication.setType(type);
-        publication.setPubDate(pubDate);
-        publication.setAuthor(author);
-        publication.setCallNumber(callNumber);
-        publication.setStatus(status);
+     public String addPublication(Publication publication) {
         
-        em.persist(publication);
+        persist(publication);
         return "publicatinAdded";
     }
-     
-    @Override
-      public String registerStaff(String username, String password, String fullName, String email) {
-        Staffs staff = new Staffs();
-        staff.setFname(fullName);
-        staff.setUsername(username);
-        staff.setEmail(email);
-        staff.setPassword(password);
-        
-        em.persist(staff);
-        
-        return "registered";
-        //List <Staffs> list = em.createQuery("FROM Staffs res").getResultList();
-        // \n Number of staffs : " +list.size();
+     public void persist(Object object) {
+        em.persist(object);
     }
 
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
+    @Override
+    public List searchByTitle(String title) {
+        Query query = em.createQuery("SELECT p FROM Publication p WHERE p.title = :title");
+        query.setParameter("title", title);
+        return query.getResultList();
+    }
+    
 
+    @Override
+    public List listPulication() {
+        Query query = em.createQuery("select p from Publication p");
+        return query.getResultList();
+    }
+
+    @Override
+    public List searchAuthor(String author) {
+        Query query = em.createQuery("SELECT p FROM Publication p WHERE p.author = :author");
+        query.setParameter("author", author);
+        return query.getResultList();
+    }
+
+    @Override
+    public List searchByTitleAndAuthor(String title, String author) {
+        Query query = em.createQuery("SELECT p FROM Publication p WHERE p.author = :author AND p.title = :title");
+        query.setParameter("author", author);
+        query.setParameter("title", title);
+        return query.getResultList();
+    }
+  
 }

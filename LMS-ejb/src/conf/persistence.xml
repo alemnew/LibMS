@@ -5,6 +5,7 @@
     <jta-data-source>lms-jndi</jta-data-source>
     <class>org.mk.rc.entity.Publication</class>
     <class>org.mk.rc.entity.Users</class>
+    <class>org.mk.rc.entity.Staffs</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="eclipselink.ddl-generation" value="create-tables"/>
