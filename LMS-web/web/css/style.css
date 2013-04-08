@@ -1,0 +1,293 @@
+/*body { padding:50px 100px; font:12px Verdana, Geneva, sans-serif;
+background:url("wooden_background.jpg") repeat scroll 0 0 #282828;
+ }*/
+
+
+input, textarea { 
+    padding: 8px;
+    text-align: center;
+    border: solid 1.5px #E5E5E5;
+    /*font: normal 12px Verdana, Tahoma, sans-serif;*/
+    width: 200px;
+    /*background: #FFFFFF url('../images/contact_form_background.png') left top repeat-x;*//*Mimic Background Property in Internet Explorer since IE 6,7,8 does not support CSS3*/
+    background: -webkit-gradient(linear, left top, left 25), from( #FFFFFF), color-stop(4%, #EEEEEE), to(#FFFFFF);
+    background: -moz-linear-gradient(top, #FFFFFF, #EEEEEE 1px, #FFFFFF 25px);
+    box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;/*0.1 actually means 10 %*/
+    -moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+    -webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+
+    border-radius:20px;
+
+}
+
+textarea { 
+    width: 400px;
+    max-width: 400px;
+    height: 150px;
+    line-height: 150%;
+}
+
+input:hover, textarea:hover, input:focus, textarea:focus { 
+    -moz-box-shadow:0 0 8px khaki;
+    -webkit-box-shadow:0 0 8px khaki;
+    /* box-shadow:0 0 8px wheat;*/
+    border-color: #0078ff;
+
+}
+.submit {
+    background: #617798;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: #FFFFFF;
+    width: auto;
+    cursor:pointer;
+    font-size: 14px;
+}
+
+.form label { 
+    margin-left: 20px; 
+    color: #999999; 
+}
+.form {
+    background-color: #F5F5F5;
+    -moz-border-radius:12px 12px 12px 12px;
+    -webkit-border-radius: 12px 12px 12px 12px;
+    background-color:#F5F5F5;
+    padding:15px;
+}
+
+
+.listTable
+{
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    font-size: 12px;
+    margin: auto;
+    margin-bottom: 30px;
+    margin-top: 20px;
+    width: auto;
+    text-align: left;
+    border: solid 1.5px #E5E5E5;
+    border-collapse: collapse;
+    background: -webkit-gradient(linear, left top, left 25), from( #FFFFFF), color-stop(4%, #EEEEEE), to(#FFFFFF);
+    background: -moz-linear-gradient(top, #FFFFFF, #EEEEEE 1px, #FFFFFF 25px);
+    box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;/*0.1 actually means 10 %*/
+    -moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+    -webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+
+    border-radius:5px;
+}
+
+
+.listTable th
+{
+    padding: 8px;
+    font-weight: normal;
+    font-size: 13px;
+    color: #039;
+    background: #b9c9fe;
+}
+.listTable td
+{
+    padding: 8px;
+    background: #e8edff;
+    border-top: 1px solid #fff;
+    color: #669;
+}
+.listTable tfoot td.rounded-foot-left
+{
+    background: #e8edff url('table-images/botleft.png') left bottom no-repeat;
+}
+.listTable tfoot td.rounded-foot-right
+{
+    background: #e8edff url('table-images/botright.png') right bottom no-repeat;
+}
+.listTable tbody tr:hover td
+{
+    background: #d0dafd;
+}
+/*login form started*/
+#loginbox{
+   /* background:url(../images/shape.png) no-repeat center;*/
+    margin:80px auto 80px auto;
+    width:360px;
+    height:264px;
+    /*background: #ddd url(../images/gradient.png) repeat-x 0 0;*/
+    border: solid 1px #b4b4b4;
+
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 20px;
+
+    -webkit-box-shadow: 0 1px 3px rgba(0,0,0, .3);
+    -moz-box-shadow: 0 1px 3px rgba(0,0,0, .3);
+    box-shadow: 0 1px 3px rgba(0,0,0, .3);
+}
+#loginbox .elements {
+    width:222px;
+    margin:0 auto;
+    padding:10px 0;
+}
+#loginbox .avatar{
+    background:url(../images/avatar.gif) no-repeat center;
+    height:65px;
+    margin-bottom:15px;
+}
+#loginbox .username{
+    background:url(../images/usermamefield.gif) no-repeat top;
+    width:222px;
+    height:auto;
+    border: solid 1px #b4b4b4;
+
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 20px;
+
+    -webkit-box-shadow: 0 1px 3px rgba(0,0,0, .3);
+    -moz-box-shadow: 0 1px 3px rgba(0,0,0, .3);
+    box-shadow: 0 1px 3px rgba(0,0,0, .3);
+}
+#loginbox .username:focus {
+    background:url(../images/usermamefield.gif) no-repeat bottom;
+    color:#333333;
+    border: solid 1px #b4b4b4;
+
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 20px;
+
+    -webkit-box-shadow: 0 1px 3px rgba(0,0,0, .3);
+    -moz-box-shadow: 0 1px 3px rgba(0,0,0, .3);
+    box-shadow: 0 1px 3px rgba(0,0,0, .3);
+}
+#loginbox .password{
+    background:url(../images/passwordfield.gif) no-repeat top;
+    width:222px;
+    height:auto;
+    text-align:center;
+    border: solid 1px #b4b4b4;
+
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 20px;
+
+    -webkit-box-shadow: 0 1px 3px rgba(0,0,0, .3);
+    -moz-box-shadow: 0 1px 3px rgba(0,0,0, .3);
+    box-shadow: 0 1px 3px rgba(0,0,0, .3);
+}
+#loginbox .password:focus{
+    background:url(../images/passwordfield.gif) no-repeat bottom;
+    color:#333333;
+    
+    border: solid 1px #b4b4b4;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 20px;
+    -webkit-box-shadow: 0 1px 3px rgba(0,0,0, .3);
+    -moz-box-shadow: 0 1px 3px rgba(0,0,0, .3);
+    box-shadow: 0 1px 3px rgba(0,0,0, .3);
+}
+
+#loginbox .forget{
+        font-size:12px;
+        margin-bottom:20px;
+}
+#loginbox .forget a{
+        color:#999999;
+        text-decoration:none;
+}
+#loginbox .checkbox {
+    display: block;
+    width: 40px;
+    height: 15px;
+    overflow: hidden;
+    border-radius: 5px;
+	float:left;
+	margin:5px 0 0 0;
+}	
+
+
+#loginbox .checkbox {
+    /*text-indent: -9999px;*/
+    display: block;
+    width: 40px;
+    height: 15px;
+    line-height: 15px;
+    background: transparent url(../images/checkboxfield.png) no-repeat;
+    -webkit-transition: background-position 0.3s ease-in-out;
+    -moz-transition: background-position 0.3s ease-in-out;
+}
+#loginbox .checkbox:checked + label {
+    -webkit-transition: background-position 0.3s ease-in-out;
+    -moz-transition: background-position 0.3s ease-in-out;
+    background-position:-26px;
+}
+#loginbox .remember{
+	font-size:12px;
+	color:#999999;
+	margin:5px;
+	float:left;
+}
+#loginbox .clr{
+	clear:both;
+}
+#loginbox .submit{
+	/*float:right;*/
+	background:#cccccc;
+	/*width:60px;*/
+	/*height:23px;*/
+	border-radius:20px;
+	/*border-bottom:2px solid #bcbcbc;*/
+	cursor:pointer;
+	color:#fff;
+}
+#loginbox .submit:hover{
+	text-shadow:0 1px rgba(0,0,0,0.1);
+}
+#loginbox .submit:active{
+	text-shadow:0 -1px rgba(0,0,0,0.2);
+}
+#loginbox .signup{
+	/*text-align:center;*/
+	font-size:12px;
+	color:#999;
+	/*margin:5px 0 0 0;*/
+        float: right;
+}
+#loginbox .signup a{
+	color:#72985a;
+	text-decoration:none;
+}
+
+/*Login ends*/
+/*Notification Messages*/
+.infoMsg, .successMsg, .warningMsg, .errorMsg {
+    border: 1px solid;
+    margin: 15px 0px;
+    padding:15px 20px 15px 55px;
+    width: 500px;	
+    font: bold 12px verdana;
+    -moz-box-shadow: 0 0 5px #888;
+    -webkit-box-shadow: 0 0 5px#888;
+    box-shadow: 0 0 5px #888;
+    text-shadow: 2px 2px 2px #ccc;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+}
+.infoMsg {
+    color: #00529B;
+    background: #BDE5F8 url(../images/icon-info.png) no-repeat 10px center;
+}
+.successMsg {
+    color: #4F8A10;
+    background: #DFF2BF url(../images/icon-tick.png) no-repeat 10px center;
+}
+.warningMsg {
+    color: #9F6000;
+    background: #FEEFB3 url(../images/icon-warning.png) no-repeat 10px center;
+}
+.errorMsg {
+    color: #D8000C;
+    background: #FFBABA url(../images/icon-error.png) no-repeat 10px center;
+    
+}

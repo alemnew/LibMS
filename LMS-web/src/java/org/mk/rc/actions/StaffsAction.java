@@ -5,93 +5,80 @@
 package org.mk.rc.actions;
 
 import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.ModelDriven;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-import org.mk.rc.intf.RegistrationBeanRemote;
+import org.apache.commons.lang3.StringUtils;
+import org.mk.rc.entity.Staffs;
+import org.mk.rc.intf.StaffsBeanRemote;
 
 /**
  *
  * @author alemnew
  */
-public class StaffsAction extends ActionSupport{
-    private String username;
-    private String password;
-    private String fullname;
-    private String email;
+public class StaffsAction extends ActionSupport implements ModelDriven<Staffs> {
 
-    private RegistrationBeanRemote registrationBean;
-    
-    public String registerStaff() throws Exception {
-       try {
-            Context c = new InitialContext();
-            registrationBean = (RegistrationBeanRemote) c.lookup("java:global/LMS-ejb/RegistrationBean!org.mk.rc.intf.RegistrationBeanRemote");
-           if (registrationBean.registerStaff(getUsername(), getPassword(), getFullname(), getEmail()).equalsIgnoreCase("registered")) {
-                return SUCCESS;
-            } 
-                return ERROR;
-        } catch (NamingException ne) {
-            ne.printStackTrace();
-            throw new RuntimeException(ne);
+    private Staffs staff = new Staffs();
+    StaffsBeanRemote staffsBean = lookupStaffsBeanRemote();
 
+    public void validate(){
+        if(StringUtils.isEmpty(getStaff().getFullname())){
+            addFieldError("fullname", "Fullname can not be empity");
         }
-        //return SUCCESS;
+        if(StringUtils.isEmpty(getStaff().getEmail())){
+            addFieldError("email", "Fullname can not be empity");
+        }
+        if(StringUtils.isEmpty(getStaff().getPassword())){
+            addFieldError("password", "Fullname can not be empity");
+        }
+        if(StringUtils.isEmpty(getStaff().getUsername())){
+            addFieldError("username", "Fullname can not be empity");
+        }
+       
     }
-    /**
-     * @return the username
-     */
-    public String getUsername() {
-        return username;
+    public String registerStaff() throws Exception {
+        if (staffsBean.registerStaff(getStaff()).equalsIgnoreCase("registered")) {
+            addActionMessage("Staff Registered Successfully");
+            return SUCCESS;
+        }else if(staffsBean.registerStaff(getStaff()).equalsIgnoreCase("EmailAlreadyRegistered")) {
+            addActionError(getText("error.email.used"));
+            return INPUT;
+        }
+        return ERROR;
+
+    }
+
+    private StaffsBeanRemote lookupStaffsBeanRemote() {
+        try {
+            Context c = new InitialContext();
+            return (StaffsBeanRemote) c.lookup("java:global/LMS-ejb/StaffsBean!org.mk.rc.intf.StaffsBeanRemote");
+        } catch (NamingException ne) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
+            throw new RuntimeException(ne);
+        }
+    }
+
+    @Override
+    public Staffs getModel() {
+        return getStaff();
     }
 
     /**
-     * @param username the username to set
+     * @return the staff
      */
-    public void setUsername(String username) {
-        this.username = username;
+    public Staffs getStaff() {
+        return staff;
     }
 
     /**
-     * @return the password
+     * @param staff the staff to set
      */
-    public String getPassword() {
-        return password;
+    public void setStaff(Staffs staff) {
+        this.staff = staff;
     }
 
-    /**
-     * @param password the password to set
-     */
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    /**
-     * @return the fullname
-     */
-    public String getFullname() {
-        return fullname;
-    }
-
-    /**
-     * @param fullname the fullname to set
-     */
-    public void setFullname(String fullname) {
-        this.fullname = fullname;
-    }
-
-    /**
-     * @return the email
-     */
-    public String getEmail() {
-        return email;
-    }
-
-    /**
-     * @param email the email to set
-     */
-    public void setEmail(String email) {
-        this.email = email;
-    }
-    
-    
+   
 }

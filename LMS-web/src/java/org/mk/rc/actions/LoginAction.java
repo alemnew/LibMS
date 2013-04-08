@@ -4,78 +4,77 @@
  */
 package org.mk.rc.actions;
 
+import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.ModelDriven;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import org.apache.commons.lang3.StringUtils;
+import org.mk.rc.entity.Users;
 import org.mk.rc.intf.LoginBeanRemote;
 
 /**
  *
  * @author alemnew
  */
-public class LoginAction {
+public class LoginAction extends ActionSupport implements ModelDriven {
 
-    private String username;
-    private String password;
+    private Users user = new Users();
     
-    private LoginBeanRemote loginBean;
+    private LoginBeanRemote loginBean = lookupLoginBeanRemote();
 
-    public String execute() throws Exception {
-        /*try {
+    public void validate() {
+        if(StringUtils.isEmpty(user.getEmail())) {
+            addFieldError("email", "Email can not be empity!");
+        }
+        if(StringUtils.isEmpty(user.getPassword())){
+            addFieldError("password", "Password can not be empity! ");
+        }
+    }
+    public String authenticateUser() throws Exception {
+
+        if (loginBean.authenticateUser(getUser()).equals("Autheniticated")) {
+            return SUCCESS;
+        }
+        else if (loginBean.authenticateUser(getUser()).equals(null)) {
+            return ERROR;
+        }
+        return LOGIN;
+
+    }
+     public String authenticateStaff() throws Exception {
+
+       
+            return "success";
+        
+    }
+
+    private LoginBeanRemote lookupLoginBeanRemote() {
+        try {
             Context c = new InitialContext();
-            loginBean = (LoginBeanRemote) c.lookup("java:global/LMS-ejb/LoginBean!org.mk.rc.intf.LoginBeanRemote");
-            if (loginBean.authenticate().equalsIgnoreCase("sucess")) {
-                return "success";
-            } else {
-                return "error";
-            }
+            return (LoginBeanRemote) c.lookup("java:global/LMS-ejb/LoginBean!org.mk.rc.intf.LoginBeanRemote");
         } catch (NamingException ne) {
             ne.printStackTrace();
             throw new RuntimeException(ne);
-
-        }*/
-        if(getUsername().equalsIgnoreCase("user") && getPassword().equalsIgnoreCase("password")){
-            return "success";
         }
-        return "failure";
-
     }
 
-    /*private LoginBeanRemote lookupLoginBeanRemote() {
-     try {
-     Context c = new InitialContext();
-     return (LoginBeanRemote) c.lookup("java:global/LMS-ejb/LoginBean!org.mk.rc.intf.LoginBeanRemote");
-     } catch (NamingException ne) {
-     ne.printStackTrace();
-     throw new RuntimeException(ne);
-     }
-     }*/
-
-    /**
-     * @return the username
-     */
-    public String getUsername() {
-        return username;
+    @Override
+    public Object getModel() {
+        return getUser();
     }
 
     /**
-     * @param username the username to set
+     * @return the user
      */
-    public void setUsername(String username) {
-        this.username = username;
+    public Users getUser() {
+        return user;
     }
 
     /**
-     * @return the password
+     * @param user the user to set
      */
-    public String getPassword() {
-        return password;
-    }
-
-    /**
-     * @param password the password to set
-     */
-    public void setPassword(String password) {
-        this.password = password;
+    public void setUser(Users user) {
+        this.user = user;
     }
 }

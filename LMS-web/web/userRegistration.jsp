@@ -6,21 +6,28 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>MKRC | User Registration  </title>
-    </head>
-    <body>
-        <s:form action="RegisterUser">
-            <s:textfield key="fName" label="First Name "/>
-            <s:textfield key="lName" label="Last Name "/>
-            <s:textfield key="email" label="Email "/>
-            <s:password key="password" label="Password"/>
-            <s:textfield key="phoneNumber" label="Phone Number"/>
-            <s:textfield key="address" label="Address"/>
-            
-            <s:submit value="Register"/>
-        </s:form>
-    </body>
-</html>
+<jsp:include page="header.jsp" flush="ture">
+    <jsp:param name="id" value="userRegistration.jsp"/>
+    <jsp:param name="title" value="MK RC | User Registration" />
+</jsp:include>
+<s:form action="RegisterUser" cssClass="form">
+     <s:if test="hasActionErrors()">
+        <div class="errorMsg">
+            <s:actionerror/>
+        </div>
+    </s:if>
+    <s:if test="hasActionMessages()">
+        <div id="successMsg">
+            <s:actionmessage/>
+        </div>
+    </s:if>
+    <s:textfield key="label.firstname" name="firstname" required="true"/>
+    <s:textfield key="label.lastname" name="lastname" required="true"/>
+    <s:textfield key="label.email" name="email" required="true"/>
+    <s:password key="label.password" name="password" required="true"/>
+    <s:textfield key="label.phoneNumber" name="phonenumber" required="true"/>
+    <s:textfield key="label.address" name="address" required="true"/>
+    <s:submit value="Register" cssClass="submit"/>
+</s:form>
+
+<%@include file="footer.jsp" %>

@@ -7,16 +7,21 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>MK RC | Login Page</title>
-    </head>
-    <body>
-         <s:form action="Login">
-            <s:textfield key="username" label="Username"/>
-            <s:password key="password" label="Password"/>
-            <s:submit value="Login"/>
+<jsp:include page="header.jsp" flush="ture">
+    <jsp:param name="id" value="login.jsp"/>
+    <jsp:param name="title" value="MK RC | Login" />
+</jsp:include>
+
+<div id="loginbox">
+    <div class="elements">
+        <div class="avatar"></div>
+        <s:form action="authenticateUser">
+            <s:textfield key="email" required="*"  labelSeparator="" label="" cssClass="username" placeholder="Username or Email" />
+            <s:password key="password" required="*"  labelSeparator="" label="" cssClass="password" placeholder="••••••••" />
+            
+            <s:checkbox key="remember" label="Remember?"   cssClass="checkbox" value="1" />
+            <s:submit value="Login" cssClass="submit"  />
         </s:form>
-    </body>
-</html>
+ </div> 
+</div>
+<%@include file="footer.jsp" %>

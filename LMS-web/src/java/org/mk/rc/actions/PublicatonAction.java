@@ -5,122 +5,131 @@
 package org.mk.rc.actions;
 
 import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.ModelDriven;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-import org.mk.rc.intf.RegistrationBeanRemote;
+import org.apache.commons.lang3.StringUtils;
+import org.mk.rc.entity.Publication;
+import org.mk.rc.intf.PublicationBeanRemote;
 
 /**
  *
  * @author alemnew
  */
-public class PublicatonAction extends ActionSupport{
-    private String title;
-    private String type;
-    private String pubDate;
-    private String author;
-    private String callNumber;
-    private String status;
+public class PublicatonAction extends ActionSupport implements ModelDriven<Publication> {
 
-    private RegistrationBeanRemote registrationBean;
-    
-    public String addPublication() throws Exception {
-        try {
-            Context c = new InitialContext();
-            registrationBean = (RegistrationBeanRemote) c.lookup("java:global/LMS-ejb/RegistrationBean!org.mk.rc.intf.RegistrationBeanRemote");
-        if(registrationBean.addPublication(getTitle(), getType(), getPubDate(), getAuthor(), 
-                getCallNumber(),getStatus()).equalsIgnoreCase("publicatinAdded")){
+    private Publication publication = new Publication();
+    private String numOfPub = null;
+    private List<Publication> pubList;
+    PublicationBeanRemote publicationBean = lookupPublicationBeanRemote();
+
+    public void validate() {
+        if (StringUtils.isEmpty(getPublication().getAuthor())) {
+            addFieldError("author", getText("error.author"));
+        }
+        if (StringUtils.isEmpty(getPublication().getCallnumber())) {
+            addFieldError("callnumber", getText("error.callnumber"));
+        }
+        if (StringUtils.isEmpty(getPublication().getPubDate())) {
+            addFieldError("pubDate", getText("error.pubdate"));
+        }
+        if (StringUtils.isEmpty(getPublication().getStatus())) {
+            addFieldError("status", getText("error.status"));
+        }
+        if (StringUtils.isEmpty(getPublication().getTitle())) {
+            addFieldError("title", getText("error.title"));
+        }
+        if (StringUtils.isEmpty(getPublication().getType())) {
+            addFieldError("type", getText("error.type"));
+        }
+    }
+
+    public String insertPublication() throws Exception {
+        if (publicationBean.addPublication(getPublication()).equalsIgnoreCase("publicatinAdded")) {
+            addActionMessage("New Publication successfully Recoreded!");
             return SUCCESS;
         }
         return ERROR;
-         } catch (NamingException ne) {
-            ne.printStackTrace();
-            throw new RuntimeException(ne);
-
-        }
     }
+
+    public String listPublication() throws Exception {
+        /* if (!getPublication().getAuthor().trim().equals("") && !getPublication().getTitle().trim().equals("")) {
+         setPubList(publicationBean.searchByTitleAndAuthor(getPublication().getTitle(), getPublication().getAuthor()));
+         setNumOfPub(getPubList().size() + " publications");
+         } else*/ if (getPublication().getTitle().trim().equals("")) {//&& getPublication().getAuthor().trim().equals("")) {
+            setPubList((List<Publication>) publicationBean.listPulication());
+            setNumOfPub(getPubList().size() + " publications");
+        } else if (!getPublication().getTitle().trim().equals("")) {
+            setPubList(publicationBean.searchByTitle(getPublication().getTitle()));
+            setNumOfPub(getPubList().size() + " publications");
+        }/* else if (!getPublication().getAuthor().trim().equals("")) {
+         setPubList(publicationBean.searchAuthor(getPublication().getAuthor()));
+         setNumOfPub(getPubList().size() + " publications"); 
+         }*/
+        return SUCCESS;
+    }
+
     /**
      * @return the title
      */
-    public String getTitle() {
-        return title;
+    private PublicationBeanRemote lookupPublicationBeanRemote() {
+        try {
+            Context c = new InitialContext();
+            return (PublicationBeanRemote) c.lookup("java:global/LMS-ejb/PublicationBean!org.mk.rc.intf.PublicationBeanRemote");
+        } catch (NamingException ne) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
+            throw new RuntimeException(ne);
+        }
+    }
+
+    @Override
+    public Publication getModel() {
+        return getPublication();
     }
 
     /**
-     * @param title the title to set
+     * @return the publication
      */
-    public void setTitle(String title) {
-        this.title = title;
+    public Publication getPublication() {
+        return publication;
     }
 
     /**
-     * @return the type
+     * @param publication the publication to set
      */
-    public String getType() {
-        return type;
+    public void setPublication(Publication publication) {
+        this.publication = publication;
     }
 
     /**
-     * @param type the type to set
+     * @return the numOfPub
      */
-    public void setType(String type) {
-        this.type = type;
+    public String getNumOfPub() {
+        return numOfPub;
     }
 
     /**
-     * @return the pubDate
+     * @param numOfPub the numOfPub to set
      */
-    public String getPubDate() {
-        return pubDate;
+    public void setNumOfPub(String numOfPub) {
+        this.numOfPub = numOfPub;
     }
 
     /**
-     * @param pubDate the pubDate to set
+     * @return the pubList
      */
-    public void setPubDate(String pubDate) {
-        this.pubDate = pubDate;
+    public List<Publication> getPubList() {
+        return pubList;
     }
 
     /**
-     * @return the author
+     * @param pubList the pubList to set
      */
-    public String getAuthor() {
-        return author;
+    public void setPubList(List<Publication> pubList) {
+        this.pubList = pubList;
     }
-
-    /**
-     * @param author the author to set
-     */
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
-    /**
-     * @return the callNumber
-     */
-    public String getCallNumber() {
-        return callNumber;
-    }
-
-    /**
-     * @param callNumber the callNumber to set
-     */
-    public void setCallNumber(String callNumber) {
-        this.callNumber = callNumber;
-    }
-
-    /**
-     * @return the Status
-     */
-    public String getStatus() {
-        return status;
-    }
-
-    /**
-     * @param Status the Status to set
-     */
-    public void setStatus(String status) {
-        this.status = status;
-    }
-    
 }

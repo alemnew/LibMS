@@ -3,32 +3,25 @@
 "http://struts.apache.org/dtds/struts-2.0.dtd">
 
 <struts>
-    
+    <constant name="struts.enable.DynamicMethodInvocation" value="false" />
+
+    <constant name="struts.devMode" value="false" />
+
+    <constant name="struts.custom.i18n.resources" value="lms-global" />
    
     <!-- Configuration for the default package. -->
     <package name="default" extends="struts-default">
-        
+       
     </package>
-    <package name="registration"  extends="struts-default">
-        <action name="RegisterUser" method="registerUser" class="org.mk.rc.actions.UsersAction">
-            <result name="success">/success.jsp</result>
-            <result name="error">/error.jsp</result>
-        </action>  
-        <action name="RegisterStaff" method="registerStaff" class="org.mk.rc.actions.StaffsAction">
-            <result name="success">/success.jsp</result>
-            <result name="error">/error.jsp</result>
-        </action>
-        <action name="AddPublication" method="addPublication" class="org.mk.rc.actions.PublicationAction">
-            <result name="success">/success.jsp</result>
-            <result name="error">/error.jsp</result>
-        </action>    
-    </package>
+    <include file="registration.xml"/>
+    <include file="search.xml"/>
     
     <package name="Login" extends="struts-default">
-        <action name="Login" class="org.mk.rc.actions.LoginAction">
-            <result name="success">/success.jsp</result>
-            <result name="failure">/error.jsp</result>
+        <action name="authenticateUser" class="org.mk.rc.actions.LoginAction" method="authenticateUser">
+            <result name="success">WEB-INF/success.jsp</result>
+            <result name="login">/error.jsp</result>
+            <result name="input">/login.jsp</result>
         </action>
     </package>
-   
+  
 </struts>

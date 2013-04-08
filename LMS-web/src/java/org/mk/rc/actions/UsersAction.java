@@ -5,123 +5,126 @@
 package org.mk.rc.actions;
 
 import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.ModelDriven;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-import org.mk.rc.intf.RegistrationBeanRemote;
+import org.apache.commons.lang3.StringUtils;
+import org.mk.rc.entity.Users;
+import org.mk.rc.intf.UsersBeanRemote;
 
 /**
  *
  * @author alemnew
  */
-public class UsersAction extends ActionSupport{
-    private String fName;
-    private String lName;
-    private String email;
-    private String password;
-    private String phoneNumber;
-    private String address;
+public class UsersAction extends ActionSupport implements ModelDriven{
+    private static long serialVersionUID = 1L;
 
-    private RegistrationBeanRemote registrationBean;
+    /**
+     * @return the serialVersionUID
+     */
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    /**
+     * @param aSerialVersionUID the serialVersionUID to set
+     */
+    public static void setSerialVersionUID(long aSerialVersionUID) {
+        serialVersionUID = aSerialVersionUID;
+    }
     
+    UsersBeanRemote usersBean = lookupUsersBeanRemote();
+    private Users user = new Users();
+    
+    private String size;
+    
+    public void validate() {
+         if(StringUtils.isEmpty(getUser().getAddress())){
+            addFieldError("address", getText("error.address"));
+        }
+        if(StringUtils.isEmpty(getUser().getEmail())){
+            addFieldError("email", getText("error.email"));
+        }
+         if(StringUtils.isEmpty(getUser().getFirstName())){
+            addFieldError("firstname", getText("error.firstname"));
+        }
+          if(StringUtils.isEmpty(getUser().getLastName())){
+            addFieldError("lastname", getText("error.lastname"));
+        } if(StringUtils.isEmpty(getUser().getPassword())){
+            addFieldError("password", getText("error.password"));
+        }
+         if(StringUtils.isEmpty(getUser().getPhoneNumber())){
+            addFieldError("phonenumber", getText("error.phonenumber"));
+        }
+          
+    }
     public String registerUser() throws Exception {
-        try {
-            Context c = new InitialContext();
-            registrationBean = (RegistrationBeanRemote) c.lookup("java:global/LMS-ejb/RegistrationBean!org.mk.rc.intf.RegistrationBeanRemote");
-        if(registrationBean.addPublication(getfName(), getlName(), getEmail(), getPassword(), getPhoneNumber(), 
-                getAddress()).equalsIgnoreCase("UserRegistered")){
+     
+        if(usersBean.registerUser(getUser()).equalsIgnoreCase("UserRegistered")){
             return SUCCESS;
+        }else if(usersBean.registerUser(getUser()).equalsIgnoreCase("EmailAlreadyRegistered")) {
+            addActionError(getText("error.email.used"));
+            return INPUT;
         }
         return ERROR;
-         } catch (NamingException ne) {
-            ne.printStackTrace();
-            throw new RuntimeException(ne);
-
-        }
-    }
-    /**
-     * @return the fName
-     */
-    public String getfName() {
-        return fName;
-    }
-
-    /**
-     * @param fName the fName to set
-     */
-    public void setfName(String fName) {
-        this.fName = fName;
-    }
-
-    /**
-     * @return the lName
-     */
-    public String getlName() {
-        return lName;
-    }
-
-    /**
-     * @param lName the lName to set
-     */
-    public void setlName(String lName) {
-        this.lName = lName;
-    }
-
-    /**
-     * @return the email
-     */
-    public String getEmail() {
-        return email;
-    }
-
-    /**
-     * @param email the email to set
-     */
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    /**
-     * @return the password
-     */
-    public String getPassword() {
-        return password;
-    }
-
-    /**
-     * @param password the password to set
-     */
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    /**
-     * @return the phoneNumber
-     */
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    /**
-     * @param phoneNumber the phoneNumber to set
-     */
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    /**
-     * @return the address
-     */
-    public String getAddress() {
-        return address;
-    }
-
-    /**
-     * @param address the address to set
-     */
-    public void setAddress(String address) {
-        this.address = address;
+         
     }
     
+    public String findAll() throws Exception {
+        
+        List <Users> users = usersBean.findAll();
+         size = users.size() + "Users";
+         System.out.println(size);
+        return SUCCESS;
+    }
+    
+    private UsersBeanRemote lookupUsersBeanRemote() {
+        try {
+            Context c = new InitialContext();
+            return (UsersBeanRemote) c.lookup("java:global/LMS-ejb/UsersBean!org.mk.rc.intf.UsersBeanRemote");
+        } catch (NamingException ne) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
+            throw new RuntimeException(ne);
+        }
+    }
+
+    
+    /**
+     * @return the size
+     */
+    public String getSize() {
+        return size;
+    }
+
+    /**
+     * @param size the size to set
+     */
+    public void setSize(String size) {
+        this.size = size;
+    }
+
+    /**
+     * @return the user
+     */
+    public Users getUser() {
+        return user;
+    }
+
+    /**
+     * @param user the user to set
+     */
+    public void setUser(Users user) {
+        this.user = user;
+    }
+
+    @Override
+    public Object getModel() {
+        return getUser();
+    }
+
     
 }
