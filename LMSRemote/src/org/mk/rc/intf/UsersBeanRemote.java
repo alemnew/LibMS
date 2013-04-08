@@ -4,6 +4,7 @@
  */
 package org.mk.rc.intf;
 
+import java.util.List;
 import javax.ejb.Remote;
 import org.mk.rc.entity.Users;
 
@@ -12,8 +13,9 @@ import org.mk.rc.entity.Users;
  * @author alemnew
  */
 @Remote
-public interface LoginBeanRemote {
+public interface UsersBeanRemote {
+    public String registerUser(Users user);
 
-    public String authenticateUser(Users user);
+    public List<Users> findAll() throws Exception;
     
 }

@@ -4,17 +4,24 @@
  */
 package org.mk.rc.intf;
 
+import java.util.List;
 import javax.ejb.Remote;
+import org.mk.rc.entity.Publication;
 
 /**
  *
  * @author alemnew
  */
 @Remote
-public interface RegistrationBeanRemote {
+public interface PublicationBeanRemote {
 
-   public String registerUser(String fname, String lname, String email, String pswd, String phone, String address);
-   public String addPublication(String title, String type, String pubDate, String author, String callNumber, String status) ;
-   public String registerStaff(String username, String password, String fullName, String email);
-    
+    public String addPublication(Publication publication);
+
+    public List searchByTitle(String title);
+
+    public List listPulication();
+
+    public List searchAuthor(String author);
+
+    public List searchByTitleAndAuthor(String title, String author);
 }
