@@ -24,4 +24,8 @@ public interface PublicationBeanRemote {
     public List searchAuthor(String author);
 
     public List searchByTitleAndAuthor(String title, String author);
+
+    public List searchByPubId(Long pubId);
+
+    public String deletePublication(Long pubId);
 }

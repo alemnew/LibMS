@@ -5,15 +5,17 @@
 package org.mk.rc.intf;
 
 import javax.ejb.Remote;
-import org.mk.rc.entity.Users;
 
 /**
  *
  * @author alemnew
  */
 @Remote
-public interface LoginBeanRemote {
+public interface LoanBeanRemote {
 
-    public Users authenticateUser(String email, String password);
+    public String checkOut(Long pubId, Long userId);
+
+    public boolean checkIn(Long pubId);
     
+    public String extendLoan(Long pubId, Long userId);
 }

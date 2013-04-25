@@ -14,8 +14,14 @@ import org.mk.rc.entity.Users;
  */
 @Remote
 public interface UsersBeanRemote {
+
     public String registerUser(Users user);
 
     public List<Users> findAll() throws Exception;
-    
+
+    public List displayProfile(Long userId);
+
+    public boolean editProfile(Users user);
+
+    public boolean changePassword(Long userId, String currentPswd, String newPswd);
 }
