@@ -18,6 +18,7 @@ import org.mk.rc.intf.PublicationBeanRemote;
  */
 @Stateless
 public class PublicationBean implements PublicationBeanRemote {
+
     private static long serialVersionUID = 1L;
 
     /**
@@ -33,16 +34,22 @@ public class PublicationBean implements PublicationBeanRemote {
     public static void setSerialVersionUID(long aSerialVersionUID) {
         serialVersionUID = aSerialVersionUID;
     }
-    
-    @PersistenceContext 
+    @PersistenceContext
     private EntityManager em;
-    
-     public String addPublication(Publication publication) {
-        
+
+    public String addPublication(Publication publication) {
+
+        Query query = em.createQuery("SELECT p FROM Publication p WHERE p.pubId = :pubId");
+        query.setParameter("pubId", publication.getPubId());
+        if (query.getResultList().size() > 0) {
+            em.merge(publication);
+            return "PublicationUpdated";
+        }
         persist(publication);
         return "publicatinAdded";
     }
-     public void persist(Object object) {
+
+    public void persist(Object object) {
         em.persist(object);
     }
 
@@ -52,7 +59,6 @@ public class PublicationBean implements PublicationBeanRemote {
         query.setParameter("title", title);
         return query.getResultList();
     }
-    
 
     @Override
     public List listPulication() {
@@ -74,5 +80,25 @@ public class PublicationBean implements PublicationBeanRemote {
         query.setParameter("title", title);
         return query.getResultList();
     }
-  
+
+    @Override
+    public List searchByPubId(Long pubId) {
+        Query query = em.createQuery("SELECT p FROM Publication p WHERE p.pubId = :pubId");
+        query.setParameter("pubId", pubId);
+        return query.getResultList();
+    }
+
+    @Override
+    public String deletePublication(Long pubId) {
+        Query query = em.createQuery("SELECT p FROM Publication p WHERE p.pubId = :pubId");
+        query.setParameter("pubId", pubId);
+        if (query.getResultList().size() > 0) {
+            List<Publication> publication = query.getResultList();
+            for (Publication p : publication) {
+                em.remove(p);
+            }
+            return "PublicationRemoved";
+        }
+        return "publicatinNotFound";
+    }
 }

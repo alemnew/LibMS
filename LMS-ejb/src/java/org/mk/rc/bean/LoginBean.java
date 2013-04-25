@@ -4,6 +4,7 @@
  */
 package org.mk.rc.bean;
 
+import java.util.List;
 import org.mk.rc.intf.LoginBeanRemote;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -22,21 +23,17 @@ public class LoginBean implements LoginBeanRemote {
     @PersistenceContext(unitName = "LMS-ejbPU")
     private EntityManager em;
 
-    public String authenticateUser(Users user) {
+    public Users authenticateUser(String email, String password) {
         try {
             Query query = em.createQuery("SELECT u FROM Users u WHERE u.email = :email");
-            query.setParameter("email", user.getEmail());
-            Object obj = query.getSingleResult();
+            query.setParameter("email", email);
+            List<Users> user = query.getResultList();
 
-            if (obj.equals(null)) {
-                return "UserNotFound";
+            if(user.size()> 0){
+                return user.get(0);
             }
-            Users usr = (Users) obj;
-            if (usr.getPassword().equals(user.getPassword())) {
-                return "Autheniticated";
-            } else {
-                return "UserNotFound";
-            }
+           else
+                return null;
         } catch (NoResultException e) {
             return null;
         }

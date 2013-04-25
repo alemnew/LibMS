@@ -27,7 +27,7 @@ public class UsersBean implements UsersBeanRemote {
         Query query = em.createQuery("SELECT u.email FROM Users u WHERE u.email = :email");
         query.setParameter("email", user.getEmail());
         List list = query.getResultList();
-        if (list.size()>0) {
+        if (list.size() > 0) {
             return "EmailAlreadyRegistered";
         }
         persist(user);
@@ -44,5 +44,44 @@ public class UsersBean implements UsersBeanRemote {
 
     public void persist(Object object) {
         em.persist(object);
+    }
+
+    @Override
+    public List displayProfile(Long userId) {
+        Query query = em.createQuery("SELECT u FROM Users u WHERE u.userId = :userId");
+        query.setParameter("userId", userId);
+        List list = query.getResultList();
+        if (list.size() > 0) {
+            return list;
+        }
+        return null;
+    }
+
+    @Override
+    public boolean editProfile(Users user) {
+        Query query = em.createQuery("SELECT u FROM Users u WHERE u.userId = :userId");
+        query.setParameter("userId", user.getUserId());
+        List list = query.getResultList();
+        if (list.size() > 0) {
+            em.merge(user);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean changePassword(Long userId, String currentPswd, String newPswd) {
+        Query query = em.createQuery("SELECT u FROM Users u WHERE u.userId = :userId AND u.password=:currentPswd");
+        query.setParameter("userId", userId);
+        query.setParameter("currentPswd", currentPswd);
+        List<Users> list = query.getResultList();
+        if (list.size() > 0) {
+            for (Users usr : list) {
+                usr.setPassword(newPswd);
+                em.merge(usr);
+            }
+            return true;
+        }
+        return false;
     }
 }
