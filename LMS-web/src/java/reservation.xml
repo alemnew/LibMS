@@ -1,0 +1,19 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+    <package name="reservation"  extends="struts-default">
+       
+        <action name="ReservePublication" method="reservePublication" class="org.mk.rc.actions.ReservationAction">
+            <result name="success">/WEB-INF/success.jsp</result>
+            <result name="error">/WEB-INF/error.jsp</result>
+        </action>  
+        <action name="listReservation" method="listPublication" class="org.mk.rc.actions.ReservationAction">
+            <result name="success">/reservationList.jsp</result>
+            <result name="error">/WEB-INF/error.jsp</result>
+        </action> 
+     
+    </package>
+</struts>

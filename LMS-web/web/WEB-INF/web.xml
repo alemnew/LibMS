@@ -31,4 +31,24 @@
         <ejb-ref-type>Session</ejb-ref-type>
         <remote>org.mk.rc.intf.UsersBeanRemote</remote>
     </ejb-ref>
+    <ejb-ref>
+        <ejb-ref-name>ReservationBean</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <remote>org.mk.rc.intf.ReservationBeanRemote</remote>
+    </ejb-ref>
+    <ejb-ref>
+        <ejb-ref-name>LoanBean</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <remote>org.mk.rc.intf.LoanBeanRemote</remote>
+    </ejb-ref>
+    <ejb-ref>
+        <ejb-ref-name>FavoriteListBean</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <remote>org.mk.rc.intf.FavoriteListBeanRemote</remote>
+    </ejb-ref>
+    <ejb-ref>
+        <ejb-ref-name>UsersBean1</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <remote>org.mk.rc.intf.UsersBeanRemote</remote>
+    </ejb-ref>
 </web-app>

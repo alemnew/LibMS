@@ -26,4 +26,24 @@
         
       
     </package>
+    <package name="profile"  extends="struts-default">
+        
+        <action name="displayProfile" method="diplayProfile" class="org.mk.rc.actions.ProfileAction">
+            <result name="success">/profile.jsp</result>
+            <result name="error">/WEB-INF/error.jsp</result>
+        </action>
+        
+        <action name="editProfile" method="editProfile" class="org.mk.rc.actions.UsersAction">
+            <result name="success">/WEB-INF/success.jsp</result>
+            <result name="error">/WEB-INF/error.jsp</result>
+            <result name="input">/WEB-INF/error.jsp</result>
+            
+        </action>
+        <action name="changePassword" method="changePassword" class="org.mk.rc.actions.ProfileAction">
+            <result name="success">/WEB-INF/success.jsp</result>
+            <result name="error">/WEB-INF/error.jsp</result>
+        </action>
+        
+      
+    </package>
 </struts>

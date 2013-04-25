@@ -11,7 +11,10 @@
     <jsp:param name="id" value="register_staff.jsp"/>
     <jsp:param name="title" value="MK RC | Success" />
 </jsp:include>
-<div class="successMsg">
-            <s:property value="successMsg"/>
-        </div>
+<s:if test="hasActionMessages()">
+    <div class="successMsg">
+        <s:actionmessage/>
+    </div>  
+</s:if>
+
 <%@include  file="../footer.jsp" %>

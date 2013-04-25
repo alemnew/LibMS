@@ -11,10 +11,20 @@
             <result name="error">/WEB-INF/error.jsp</result>
         </action>  
      
-        <action name="SearchPublication" class="org.mk.rc.actions.PublicatonAction" method="listPublication">
+        <action name="SearchPublication" class="org.mk.rc.actions.SearchAction" method="listPublication">
             <result name="success">/searchPublication.jsp</result>
             <result name="error">/WEB-INF/error.jsp</result>
         </action>
+                      
+        <action name="EditPublication" class="org.mk.rc.actions.EditAction" method="updatePublication">
+            <result name="success">/searchPublication.jsp</result>
+            <result name="error">/searchPublication.jsp</result>
+        </action>
         
+         <action name="deletePublication" class="org.mk.rc.actions.DeleteAction" method="deletePublication">
+            <result name="success">/WEB-INF/success.jsp</result>
+            <result name="error">/WEB-INF/error.jsp</result>
+        </action>
+       
     </package>
 </struts>

@@ -21,11 +21,11 @@
             <s:actionmessage/>
         </div>
     </s:if>
-    <s:textfield key="label.firstname" name="firstname" required="true"/>
-    <s:textfield key="label.lastname" name="lastname" required="true"/>
+    <s:textfield key="label.firstname" name="firstName" required="true"/>
+    <s:textfield key="label.lastname" name="lastName" required="true"/>
     <s:textfield key="label.email" name="email" required="true"/>
     <s:password key="label.password" name="password" required="true"/>
-    <s:textfield key="label.phoneNumber" name="phonenumber" required="true"/>
+    <s:textfield key="label.phonenumber" name="phoneNumber" required="true"/>
     <s:textfield key="label.address" name="address" required="true"/>
     <s:submit value="Register" cssClass="submit"/>
 </s:form>

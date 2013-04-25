@@ -11,7 +11,10 @@
     <jsp:param name="id" value="register_staff.jsp"/>
     <jsp:param name="title" value="MK RC | Error!" />
 </jsp:include>
-<div class="errorMsg">
-    <s:property value="errorMsg" default="Error Occured!"/>
-</div>
+<s:if test="hasActionErrors()">
+    <div class="errorMsg">
+        <s:actionerror/>
+    </div>
+</s:if>
+
 <%@include  file="../footer.jsp" %>

@@ -5,13 +5,12 @@
 --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags" %>
-<%@ taglib prefix="sj" uri="/struts-jquery-tags"%>
-
 <!DOCTYPE html>
 <jsp:include page="header.jsp" flush="ture">
     <jsp:param name="id" value="insertPublication.jsp"/>
     <jsp:param name="title" value="MK RC | Insert Publication" />
 </jsp:include>
+ 
 <s:form action="InsertPublication" cssClass="form">
     <s:if test="hasActionErrors()">
         <div class="errorMsg">

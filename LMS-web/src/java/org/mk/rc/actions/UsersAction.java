@@ -65,6 +65,7 @@ public class UsersAction extends ActionSupport implements ModelDriven{
     public String registerUser() throws Exception {
      
         if(usersBean.registerUser(getUser()).equalsIgnoreCase("UserRegistered")){
+            addActionMessage("Registration Successful!");
             return SUCCESS;
         }else if(usersBean.registerUser(getUser()).equalsIgnoreCase("EmailAlreadyRegistered")) {
             addActionError(getText("error.email.used"));
@@ -81,6 +82,16 @@ public class UsersAction extends ActionSupport implements ModelDriven{
          System.out.println(size);
         return SUCCESS;
     }
+    public String editProfile() throws Exception {
+        if(usersBean.editProfile(getUser())) {
+            addActionMessage("Congratulations, profile updated successfully!"); 
+            return SUCCESS;
+        }
+        addActionError("Oops, something went wrong! Profile not updated.");
+        return ERROR;
+       
+    }
+    
     
     private UsersBeanRemote lookupUsersBeanRemote() {
         try {

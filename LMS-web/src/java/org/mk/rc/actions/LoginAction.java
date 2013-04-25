@@ -4,8 +4,9 @@
  */
 package org.mk.rc.actions;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
-import com.opensymphony.xwork2.ModelDriven;
+import java.util.Map;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -17,36 +18,48 @@ import org.mk.rc.intf.LoginBeanRemote;
  *
  * @author alemnew
  */
-public class LoginAction extends ActionSupport implements ModelDriven {
+public class LoginAction extends ActionSupport {
 
-    private Users user = new Users();
-    
+    private String email;
+    private String password;
     private LoginBeanRemote loginBean = lookupLoginBeanRemote();
 
     public void validate() {
-        if(StringUtils.isEmpty(user.getEmail())) {
+        if (StringUtils.isEmpty(getEmail())) {
             addFieldError("email", "Email can not be empity!");
         }
-        if(StringUtils.isEmpty(user.getPassword())){
+        if (StringUtils.isEmpty(getPassword())) {
             addFieldError("password", "Password can not be empity! ");
         }
     }
-    public String authenticateUser() throws Exception {
 
-        if (loginBean.authenticateUser(getUser()).equals("Autheniticated")) {
-            return SUCCESS;
-        }
-        else if (loginBean.authenticateUser(getUser()).equals(null)) {
+    public String authenticateUser() throws Exception {
+        Map session = ActionContext.getContext().getSession();
+        Users usr = loginBean.authenticateUser(getEmail(), getPassword());
+        try {
+            if (usr.equals(null)) {
+                addActionError("Oops, Incorrect Email or Password!");
+                session.put("loggedin", "false");
+                session.put("user", "none");
+                return ERROR;
+            } else {
+                session.put("loggedin", "true");
+                session.put("user", usr.getUserId());
+                addActionMessage("Login Successful! Welcome " + usr.getFirstName());
+                return SUCCESS;
+            }
+        } catch (NullPointerException ex) {
+            addActionError("Oops, Incorrect Email or Password!");
+            session.put("loggedin", "false");
+            session.put("user", "none");
             return ERROR;
         }
-        return LOGIN;
 
     }
-     public String authenticateStaff() throws Exception {
 
-       
-            return "success";
-        
+    public String authenticateStaff() throws Exception {
+        return "success";
+
     }
 
     private LoginBeanRemote lookupLoginBeanRemote() {
@@ -59,22 +72,31 @@ public class LoginAction extends ActionSupport implements ModelDriven {
         }
     }
 
-    @Override
-    public Object getModel() {
-        return getUser();
+    /**
+     * @return the email
+     */
+    public String getEmail() {
+        return email;
     }
 
     /**
-     * @return the user
+     * @param email the email to set
      */
-    public Users getUser() {
-        return user;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     /**
-     * @param user the user to set
+     * @return the password
      */
-    public void setUser(Users user) {
-        this.user = user;
+    public String getPassword() {
+        return password;
+    }
+
+    /**
+     * @param password the password to set
+     */
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

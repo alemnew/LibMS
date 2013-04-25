@@ -4,19 +4,6 @@
 <!-- end content -->
 <!-- start sidebar -->
 <div id="sidebar">
-    <!--div class="dropdown">
-                <a class="account" >My Account</a>
-
-                <div class="submenu">
-                    <ul class="root">
-                        <li ><a href="#Dashboard" >Dashboard</a></li>
-                        <li ><a href="#Profile" >Profile</a></li>
-                        <li ><a href="#settings">Settings</a></li>
-                        <li ><a href="#feedback">Send Feedback</a></li>
-                    </ul>
-                </div>
-
-            </div-->
     <div id="search">
         <!--h2>Search may be to be removed</h2-->
         <form id="searchform" method="get" action="">
