@@ -21,10 +21,17 @@ public class FavoriteListBean implements FavoriteListBeanRemote {
     List<Publication> favoriteList = new ArrayList<Publication>();
 
     @Override
-    public void addToFavorite(Publication publication) {
+    public String addToFavorite(Publication publication) {
         favoriteList.add(publication);
+       // System.out.println("Fav: "+ favoriteList.size());
+        return favoriteList.size() + " Favorites";
+        
     }
-
+    
+    @Override
+    public int noFavList() {
+        return favoriteList.size();
+    }
     @Override
     public void removeFromFavorite(Long pubId) {
         for (int i = 0; i < favoriteList.size(); i++) {
