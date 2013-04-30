@@ -291,3 +291,25 @@ input:hover, textarea:hover, input:focus, textarea:focus {
     background: #FFBABA url(../images/icon-error.png) no-repeat 10px center;
     
 }
+ /*adv serach*/
+ .advSearchForm {
+     display: none;
+ }
+ 
+ /*struts2*/
+ .errorsBg{
+	background-color:#fdd;
+	color:red;	
+	border: 1px solid;
+}
+ 
+.errorMessage{
+	padding:0px 8px;
+}
+ 
+table{
+	border-spacing: 4px;
+}
+td{
+	padding:4px;
+}

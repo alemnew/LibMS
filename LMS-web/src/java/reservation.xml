@@ -14,6 +14,34 @@
             <result name="success">/reservationList.jsp</result>
             <result name="error">/WEB-INF/error.jsp</result>
         </action> 
+         <action name="removeReservation" method="removeReservation" class="org.mk.rc.actions.ReservationAction">
+            <result name="success">/reservationList.jsp</result>
+            <result name="error">/WEB-INF/error.jsp</result>
+        </action>
      
     </package>
+    <package name="favorite"  extends="struts-default">
+       
+        <action name="addToFavorite" method="addToFav" class="org.mk.rc.actions.FavoriteAction">
+            <result name="success">/searchPublication.jsp</result>
+            <result name="error">/WEB-INF/error.jsp</result>
+        </action>  
+        <action name="getFavListContent" method="getFavListContent" class="org.mk.rc.actions.FavoriteAction">
+            <result name="success">/favoriteList.jsp</result>
+            <result name="error">/WEB-INF/error.jsp</result>
+        </action> 
+        <action name="removeFavorite" method="removeFromFav" class="org.mk.rc.actions.FavoriteAction">
+            <result name="success" type="redirect">getFavListContent</result>
+            <result name="error">/favoriteList.jsp</result>
+        </action> 
+        <action name="removeAllFavorite" method="removeAllFav" class="org.mk.rc.actions.FavoriteAction">
+            <result name="success">/WEB-INF/success.jsp</result>
+            <result name="error">/favoriteList.jsp</result>
+        </action> 
+        <action name="submitToReservation" method="submitToReservation" class="org.mk.rc.actions.FavoriteAction">
+            <result name="success">/WEB-INF/success.jsp</result>
+            <result name="error">/favoriteList.jsp</result>
+        </action> 
+    </package>
+    
 </struts>

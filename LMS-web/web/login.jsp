@@ -21,7 +21,7 @@
             </s:if>
             <s:textfield key="email" required="*"  labelSeparator="" label="" cssClass="username" placeholder="Username or Email" />
             <s:password key="password" required="*"  labelSeparator="" label="" cssClass="password" placeholder="••••••••" />
-            <s:checkbox key="remember" label="Remember?"   cssClass="checkbox" value="1" />
+            <!--checkbox key="remember" label="Remember?"   cssClass="checkbox" value="1" /-->
             <s:submit value="Login" cssClass="submit"  />
         </s:form>
  </div> 

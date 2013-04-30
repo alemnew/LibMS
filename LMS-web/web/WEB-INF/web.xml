@@ -51,4 +51,14 @@
         <ejb-ref-type>Session</ejb-ref-type>
         <remote>org.mk.rc.intf.UsersBeanRemote</remote>
     </ejb-ref>
+    <ejb-ref>
+        <ejb-ref-name>ReservationBean1</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <remote>org.mk.rc.intf.ReservationBeanRemote</remote>
+    </ejb-ref>
+    <ejb-ref>
+        <ejb-ref-name>UsersBean2</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <remote>org.mk.rc.intf.UsersBeanRemote</remote>
+    </ejb-ref>
 </web-app>

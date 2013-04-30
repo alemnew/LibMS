@@ -30,17 +30,17 @@
                 <sj:dialog id="profile%{userId}" autoOpen="false" modal="true" title="Edit Profile" showEffect="slide" hideEffect="slide">
                     <table>
                         <caption>
-                            <form id="%{pubId}edit" action="editProfile" method="POST">
+                            <form id="%{userId}" action="editProfile" method="POST">
                                 <input type="hidden" name="userId" value="${userId}"/>
                                 <input type="hidden" name="password" value="${password}"/>
                         </caption>
                         <tr>
                             <td> <label for="userId">User Id:</label>  </td>
-                            <td>  <input type="text" name="userId" autocomplete="off" value="${userId}" disabled="true" /> </td>
+                            <td>  <label for="userId">${userId}</label> </td>
                         </tr>
                         <tr>
                             <td>  <label for="firstName">First name:</label> </td>
-                            <td> <input type="text" name="firName" autocomplete="off" value="${firstName}" />  </td>
+                            <td> <input type="text" name="firstName" autocomplete="off" value="${firstName}" />  </td>
                         </tr>
                         <tr>
                             <td>  <label for="lastName">Last name:</label> </td>
@@ -50,10 +50,7 @@
                             <td>  <label for="email">Email:</label> </td>
                             <td>  <input type="text" name="email" autocomplete="off" value="${email}" /> </td>
                         </tr>
-                        <tr>
-                            <td>  <label for="password">Password: </label> </td>
-                            <td>  <input type="text" name="password" autocomplete="off" value="**********" /> </td>
-                        </tr>
+                        
                         <tr>
                             <td>  <label for="phoneNumber">Phone number:</label> </td>
                             <td>  <input type="text" name="phoneNumber" autocomplete="off" value="${phoneNumber}"/> </td>
@@ -64,7 +61,9 @@
                         </tr>
                         <tr>
                             <td>   </td>
-                            <td> <input type="submit" name="Update" value="Update" class="submit"/>  </td>
+                            <td> 
+                                <input type="submit" name="Update" value="Update" class="submit"/>
+                            </td>
                         </tr>
                         </form>
                     </table>
@@ -72,7 +71,7 @@
                 <sj:dialog id="pswd%{userId}" autoOpen="false" modal="true" title="Edit Profile" showEffect="slide" hideEffect="slide" >
                     <table>
                         <caption>
-                            <form id="%{pubId}pswd" action="changePassword" method="POST">
+                            <form id="%{userId}pswd" action="changePassword" method="POST">
                                 <input type="hidden" name="userId" value="${userId}"/>
                         </caption>
                         <tr>

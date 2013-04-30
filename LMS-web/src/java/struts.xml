@@ -8,11 +8,13 @@
     <constant name="struts.devMode" value="true" />
 
     <constant name="struts.custom.i18n.resources" value="lms-global" />
+    <constant name="struts.ui.theme" value="mkrc" />
+    <constant name="struts.ui.templateDir" value="template" />
    
     <!-- Configuration for the default package. -->
     <package name="default" extends="struts-default">
-       <action name="authenticateUser" class="org.mk.rc.actions.LoginAction" method="authenticateUser">
-            <result name="success">/WEB-INF/success.jsp</result>
+        <action name="authenticateUser" class="org.mk.rc.actions.LoginAction" method="authenticateUser">
+            <result name="success" type="redirect">/index.jsp</result>
             <result name="error">/login.jsp</result>
             <result name="input">/login.jsp</result>
         </action>

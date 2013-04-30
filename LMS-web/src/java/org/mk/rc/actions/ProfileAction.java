@@ -33,6 +33,7 @@ public class ProfileAction extends ActionSupport{
         return SUCCESS;
     }
     public String editProfile() throws Exception {
+       System.out.println(getUsers().getEmail());
         if(usersBean.editProfile(getUsers())) {
             addActionMessage("Congratulations, profile updated successfully!"); 
             return SUCCESS;

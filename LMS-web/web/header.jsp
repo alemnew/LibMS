@@ -27,6 +27,7 @@
         <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
         <script src="js/jquery.validationEngine-en.js" type="text/javascript"></script>
         <script src="js/jquery.validationEngine.js" type="text/javascript"></script>
+        <script src="js/mkrc.js" type="text/javascript"></script>
         <!-- contct us end-->
         <SCRIPT>
             $(document).ready(function() {
@@ -45,6 +46,7 @@
            
           
         </SCRIPT>
+        
         <!-- Hide list table -->
         <!-- Fixed header end-->
 
@@ -90,6 +92,28 @@
             });
 	
         </script>
+        <!-- adv search -->
+        <script>
+		$(document).ready(function() {
+		  $('.advSearchLink').click(function(){
+			//get collapse content selector
+			var collapse_content_selector = $(this).attr('href');					
+ 
+			//make the collapse content to be shown or hide
+			var toggle_switch = $(this);
+			$(collapse_content_selector).toggle(function(){
+			  if($('advSearchForm').css('display')=='none'){
+                                //change the button label to be 'Show'
+				toggle_switch.html('Show');
+			  }else{
+                                //change the button label to be 'Hide'
+				toggle_switch.html('Hide');
+			  }
+			});
+		  });
+ 
+		});	
+		</script>
         <!--account-->
         <script type="text/javascript">
             $(document).ready(function(){ 
@@ -107,6 +131,8 @@
             });
           
         </script>
+        
+
 
     </head>
     <body>
@@ -137,7 +163,7 @@
                                     <s:a href="%{myReservationURL}">My Reservations </s:a>
                                     </li>
                                     <li >
-                                        <a href="#Favorites">Favorites </a>
+                                        <a href="getFavListContent">Favorites </a>
                                     </li>
                                     <li>
                                         <a href="logouts">Log Out</a>
