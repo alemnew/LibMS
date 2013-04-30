@@ -15,7 +15,7 @@ import org.mk.rc.entity.Publication;
 @Remote
 public interface FavoriteListBeanRemote {
 
-    public void addToFavorite(Publication publication);
+    public String addToFavorite(Publication publication);
 
     public void removeFromFavorite(Long pubId);
 
@@ -26,4 +26,5 @@ public interface FavoriteListBeanRemote {
     public void remove();
 
     public boolean contains(Long pubId);
+    public int noFavList();
 }

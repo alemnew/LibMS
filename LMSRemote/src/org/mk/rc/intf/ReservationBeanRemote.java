@@ -16,10 +16,12 @@ public interface ReservationBeanRemote {
 
     public String reserve(Long pubId, Long userId);
 
-    public String cancelReservation(Long id);
+    public boolean cancelReservation(Long id);
 
     public List searchByUser(Long userId);
 
-    public List searchByPublication(String pubId);
+    public List searchByPublication(Long pubId);
+    
+    public List getPublication(Long pubId);
 
 }
