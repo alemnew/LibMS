@@ -43,7 +43,10 @@
             <input type="submit" name="Search" value="Search" class="submit"/><br/>
         </form>
     </sj:dialog>
-
+    
+    <s:if test="PubList.size()==0">
+        <s:property value="numOfPub"/>
+    </s:if>
     <s:if test="PubList.size()>0">
         <table class="listTable" id="listPub">
             <caption> <s:property value="numOfPub"/></caption>

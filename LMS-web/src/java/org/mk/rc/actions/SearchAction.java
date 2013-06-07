@@ -34,13 +34,19 @@ public class SearchAction extends ActionSupport implements ModelDriven<Publicati
         /* if (!getPublication().getAuthor().trim().equals("") && !getPublication().getTitle().trim().equals("")) {
          setPubList(publicationBean.searchByTitleAndAuthor(getPublication().getTitle(), getPublication().getAuthor()));
          setNumOfPub(getPubList().size() + " publications");
-         } else*/ if (getPublication().getTitle().trim().equals("")) {//&& getPublication().getAuthor().trim().equals("")) {
+         } else*/
+        if (getPublication().getTitle().trim().equals("")) {
             setPubList((List<Publication>) publicationBean.listPulication());
             setNumOfPub(getPubList().size() + " publications");
         } else if (!getPublication().getTitle().trim().equals("")) {
             setPubList(publicationBean.searchByTitle(getPublication().getTitle()));
-            setNumOfPub(getPubList().size() + " publications");
-        }/* else if (!getPublication().getAuthor().trim().equals("")) {
+            if (getPubList().size() == 0) {
+                setNumOfPub("No such publications found");
+            } else {
+                setNumOfPub(getPubList().size() + " publications");
+            }
+        }
+        /* else if (!getPublication().getAuthor().trim().equals("")) {
          setPubList(publicationBean.searchAuthor(getPublication().getAuthor()));
          setNumOfPub(getPubList().size() + " publications"); 
          }*/

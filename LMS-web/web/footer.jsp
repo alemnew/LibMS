@@ -10,7 +10,7 @@
         <form id="searchform" method="get" action="">
             <fieldset>
                 <input name="s" type="text" size="40" id="searchtxt"  class="empty" />
-                <input type="submit" id="x" value="Search"  class="searchbtn"/>
+                <!--input type="submit" id="x" value="Search"  class="searchbtn"/-->
             </fieldset>
         </form>
     </div>
@@ -70,7 +70,7 @@
 <div id="footer">
     <p class="legal"> &copy;2013 Mahibere Kidusan. All Rights Reserved.
         <br/>
-        Developed by:  <a href="#">Alemnew Sheferaw Asrese</a> </p>
+        Developed by:   Alemnew Sheferaw Asrese </p>
 
 </div>
 <!-- end footer -->
