@@ -1,8 +1,10 @@
 
 /*
-Design by Free CSS Templates
+Original Design by Free CSS Templates
 http://www.freecsstemplates.org
 Released for free under a Creative Commons Attribution 2.5 License
+
+Modified and Customized by Alemnew S. Asrese
 */
 
 body {
@@ -629,4 +631,8 @@ a.account {
     border-top:1px solid #dedede;
 
 
+}
+div.welcome{
+    padding: 10px;
+    background-image:  url("../images/logo.jpg") 356px 256pxno-repeat;
 }

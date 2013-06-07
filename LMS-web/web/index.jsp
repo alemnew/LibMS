@@ -11,26 +11,11 @@
     <jsp:param name="id" value="index.jsp"/>
     <jsp:param name="title" value="MK RC | Home page" />
 </jsp:include>
-<h1><a href="staffRegistration.jsp" >Register Staffs</a></h1>
-<h1><a href="userRegistration.jsp" >Register Users</a></h1>
-<h1><a href="insertPublication.jsp" >Add Publication</a></h1>
-<h1><a href="searchUser.jsp" >Search Users</a></h1>
-<h1><a href="searchPublication.jsp" >Search Publication</a></h1>
-<h1>fixed</h1>
-<h1>fixed</h1>
-<h1>fixed</h1>
-<h1>fixed</h1>
-<h1>fixed</h1>
-<h1>fixed</h1>
-<h1>fixed</h1>
-<h1>fixed</h1>
-<h1>fixed</h1>
-<h1>fixed</h1>
-<h1>fixed</h1>
-<h1>fixed</h1>
-<h1>fixed</h1>
-<h1>fixed</h1>
-<h1>fixed</h1>
-<h1>fixed</h1>
-<h1>fixed</h1>
+<div class="welcome">
+    <h1>Welcome to Mahibere Kidusan Research Center Library</h1>
+
+    <img src="images/logo.jpg" width="350" height="338" alt="Mahibere Kidusan"/>
+</div>
+
+
 <%@include file="footer.jsp" %>

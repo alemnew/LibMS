@@ -11,6 +11,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import org.apache.commons.lang3.StringUtils;
+import org.mk.rc.entity.Staffs;
 import org.mk.rc.entity.Users;
 import org.mk.rc.intf.LoginBeanRemote;
 
@@ -23,6 +24,7 @@ public class LoginAction extends ActionSupport {
     private String email;
     private String password;
     private LoginBeanRemote loginBean = lookupLoginBeanRemote();
+    Map session = null;
 
     public void validate() {
         if (StringUtils.isEmpty(getEmail())) {
@@ -34,17 +36,19 @@ public class LoginAction extends ActionSupport {
     }
 
     public String authenticateUser() throws Exception {
-        Map session = ActionContext.getContext().getSession();
         Users usr = loginBean.authenticateUser(getEmail(), getPassword());
+        session =  ActionContext.getContext().getSession();
         try {
             if (usr.equals(null)) {
                 addActionError("Oops, Incorrect Email or Password!");
                 session.put("loggedin", "false");
                 session.put("user", "none");
+                session.put("role", "none");
                 return ERROR;
             } else {
                 session.put("loggedin", "true");
                 session.put("user", usr.getUserId());
+                session.put("role", "user");
                 addActionMessage("Login Successful! Welcome " + usr.getFirstName());
                 return SUCCESS;
             }
@@ -52,13 +56,36 @@ public class LoginAction extends ActionSupport {
             addActionError("Oops, Incorrect Email or Password!");
             session.put("loggedin", "false");
             session.put("user", "none");
+            session.put("role", "none");
             return ERROR;
         }
 
     }
 
     public String authenticateStaff() throws Exception {
-        return "success";
+        Staffs staff = loginBean.authenticateStaff(getEmail(), getPassword());
+        session =  ActionContext.getContext().getSession();
+        try {
+            if (staff.equals(null)) {
+                addActionError("Oops, Incorrect Email or Password!");
+                session.put("loggedin", "false");
+                session.put("user", "none");
+                session.put("role", "none");
+                return ERROR;
+            } else {
+                session.put("loggedin", "true");
+                session.put("user", staff.getId());
+                session.put("role", "staff");
+                addActionMessage("Login Successful! Welcome " + staff.getFullname());
+                return SUCCESS;
+            }
+        } catch (NullPointerException ex) {
+            addActionError("Oops, Incorrect Email or Password!");
+            session.put("loggedin", "false");
+            session.put("user", "none");
+            session.put("role", "none");
+            return ERROR;
+        }
 
     }
 

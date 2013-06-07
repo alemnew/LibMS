@@ -17,17 +17,17 @@
         <meta name="keywords" content="" />
 
         <meta name="description" content="" />
-        <link href="css/default.css" rel="stylesheet" type="text/css" media="screen" />
+        <link href="../css/default.css" rel="stylesheet" type="text/css" media="screen" />
         <!-- for contact us-->
-        <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
-        <link rel="stylesheet" href="css/contactus_validationEngine.jquery.css" type="text/css" media="screen" title="no title" charset="utf-8" />
+        <link rel="stylesheet" href="../css/style.css" type="text/css" media="all" />
+        <link rel="stylesheet" href="../css/contactus_validationEngine.jquery.css" type="text/css" media="screen" title="no title" charset="utf-8" />
 
-        <link rel="stylesheet" href="css/contactus_template.css" type="text/css" media="screen" title="no title" charset="utf-8" />
+        <link rel="stylesheet" href="../css/contactus_template.css" type="text/css" media="screen" title="no title" charset="utf-8" />
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
-        <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
-        <script src="js/jquery.validationEngine-en.js" type="text/javascript"></script>
-        <script src="js/jquery.validationEngine.js" type="text/javascript"></script>
-        <script src="js/mkrc.js" type="text/javascript"></script>
+        <script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
+        <script src="../js/jquery.validationEngine-en.js" type="text/javascript"></script>
+        <script src="../js/jquery.validationEngine.js" type="text/javascript"></script>
+        <script src="../js/mkrc.js" type="text/javascript"></script>
         <!-- contct us end-->
         <SCRIPT>
             $(document).ready(function() {
@@ -46,7 +46,7 @@
            
           
         </SCRIPT>
-        
+
         <!-- Hide list table -->
         <!-- Fixed header end-->
 
@@ -94,26 +94,26 @@
         </script>
         <!-- adv search -->
         <script>
-		$(document).ready(function() {
-		  $('.advSearchLink').click(function(){
-			//get collapse content selector
-			var collapse_content_selector = $(this).attr('href');					
+            $(document).ready(function() {
+                $('.advSearchLink').click(function(){
+                    //get collapse content selector
+                    var collapse_content_selector = $(this).attr('href');					
  
-			//make the collapse content to be shown or hide
-			var toggle_switch = $(this);
-			$(collapse_content_selector).toggle(function(){
-			  if($('advSearchForm').css('display')=='none'){
-                                //change the button label to be 'Show'
-				toggle_switch.html('Show');
-			  }else{
-                                //change the button label to be 'Hide'
-				toggle_switch.html('Hide');
-			  }
-			});
-		  });
+                    //make the collapse content to be shown or hide
+                    var toggle_switch = $(this);
+                    $(collapse_content_selector).toggle(function(){
+                        if($('advSearchForm').css('display')=='none'){
+                            //change the button label to be 'Show'
+                            toggle_switch.html('Show');
+                        }else{
+                            //change the button label to be 'Hide'
+                            toggle_switch.html('Hide');
+                        }
+                    });
+                });
  
-		});	
-		</script>
+            });	
+        </script>
         <!--account-->
         <script type="text/javascript">
             $(document).ready(function(){ 
@@ -131,7 +131,7 @@
             });
           
         </script>
-        
+
 
 
     </head>
@@ -155,23 +155,23 @@
                                         <s:param name="userId">%{#session.user}</s:param>
                                     </s:url>
                                     <s:a href="%{myProfile}" >Profile</s:a>
-                                    </li>
-                                    <li >
+                                </li>
+                                <li >
                                     <s:url id="myReservationURL" action="listReservation">
                                         <s:param name="userId">%{#session.user}</s:param>
                                     </s:url>
                                     <s:a href="%{myReservationURL}">My Reservations </s:a>
-                                    </li>
-                                    <li >
-                                        <a href="getFavListContent">Favorites </a>
-                                    </li>
-                                    <li>
-                                        <a href="logouts">Log Out</a>
-                                    </li>
-                                </ul>
-                            </div>
+                                </li>
+                                <li >
+                                    <a href="getFavListContent">Favorites </a>
+                                </li>
+                                <li>
+                                    <a href="logouts">Log Out</a>
+                                </li>
+                            </ul>
                         </div>
-                        <!--s:property value="%{#session.user}"/--> 
+                    </div>
+                    <!--s:property value="%{#session.user}"/--> 
                 </s:else>
             </div>
         </div>
@@ -183,75 +183,39 @@
                 <li>
                     <a href="#">Publications</a>
                     <ul class="submenu">
-                        <li><a href="searchPublication.jsp">Search Publication</a>
-                            <ul>
-                                <li><a href="">Search by Title</a></li>
-                                <li><a href="">Search by Author</a></li>
-
-                            </ul>
+                        <li>
+                            <a href="../searchPublication.jsp">Search Publication</a>
                         </li>
-                        <li><a href="">Add Publication</a>
+                        <li><a href="insertPublication.jsp">Add Publication</a></li>
+                        <li>
+                            <a href="#">Manage Publication</a>
                             <ul>
-                                <li><a href="editPublication.jsp">Update Existing</a></li>
-                                <li><a href="insertPublication.jsp">Add New Publication</a></li>
+                                <li><a href="#">Update Existing</a></li>
+                                <li><a href="#">Delete Publication</a></li>
                             </ul>
-                        </li>
-                        <li><a href="">Manage Publication</a>
-                            <ul>
-                                <li><a href="editPublication.jsp">Update Existing</a></li>
-                                <li><a href="deletePublication.jsp">Delete Publication</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="">New Arrivals</a></li>
+                        </li>   
                     </ul>
+
+
                 </li>
+
                 <li>
                     <a href="">Staffs</a>
                     <ul class="submenu">
-                        <li><a href="searchStaff.jsp">Search Staff</a>
+                        <li><a href="#">Search Staff</a>
                             <ul>
-                                <li><a href="">Search by Name</a></li>
-                                <li><a href="">Search by Email</a></li>
+                                <li><a href="#">Search by Name</a></li>
+                                <li><a href="#">Search by Email</a></li>
 
                             </ul>
                         </li>
-                        <li><a href="">Register Staff</a>
-                            <ul>
-                                <li><a href="">Update Existing</a></li>
-                                <li><a href="staffRegistration.jsp">Add New Staff</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="">Manage Staffs</a></li>
-                        <li><a href="">New Staffs</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="">Users</a>
-                    <ul class="submenu">
-                        <li><a href="searchUser.jsp">Search User</a>
-                            <ul>
-                                <li><a href="">Search by Name</a></li>
-                                <li><a href="">Search by Email</a></li>
+                        <li><a href="staffRegistration.jsp">Register Staff</a>
 
-                            </ul>
                         </li>
-                        <li><a href="">Register user</a>
-                            <ul>
-                                <li><a href="">Update Existing</a></li>
-                                <li><a href="userRegistration.jsp">Add New User</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="">Manage Users</a></li>
-                        <li><a href="">New users</a></li>
                     </ul>
                 </li>
-                <li><a href="aboutUs.jsp">About us</a></li>
-                <li><a href="contactUs.jsp">Contact us</a></li>
-                <li id="searchfrm">
-                    <form id="searchform2" method="get" action="">
-                        <input type="text" size="40" id="searchtxt" class="empty"/>
-                    </form>
-                </li>
+
+
             </ul>
         </div>
         <!-- end menu -->

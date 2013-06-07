@@ -15,7 +15,7 @@
 <div id="loginbox">
     <div class="elements">
         <div class="avatar"></div>
-        <s:form action="authenticateUser">
+        <s:form action="authenticateStaff">
             <s:if test="hasActionErrors()">
                 <s:actionerror/> 
             </s:if>

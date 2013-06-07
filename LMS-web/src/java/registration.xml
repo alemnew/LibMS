@@ -13,18 +13,17 @@
         </action>  
         
         <action name="InsertPublication" class="org.mk.rc.actions.PublicatonAction" method="insertPublication">
-            <result name="success">/insertPublication.jsp</result>
-            <result name="input">/insertPublication.jsp</result>
-            <result name="error">/WEB-INF/error.jsp</result>
+            <result name="success">/admin/insertPublication.jsp</result>
+            <result name="input">/admin/insertPublication.jsp</result>
+            <result name="error">../WEB-INF/error.jsp</result>
         </action>
         
         <action name="RegisterStaff" method="registerStaff" class="org.mk.rc.actions.StaffsAction">
-            <result name="success">/staffRegistration.jsp</result>
-            <result name="input">/staffRegistration.jsp</result>
-            <result name="error">/WEB-INF/error.jsp</result>
+            <result name="success">/admin/staffRegistration.jsp</result>
+            <result name="input">/admin/staffRegistration.jsp</result>
+            <result name="error">../WEB-INF/error.jsp</result>
         </action>
-        
-      
+              
     </package>
     <package name="profile"  extends="struts-default">
         

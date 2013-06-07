@@ -103,7 +103,7 @@ public class FavoriteAction extends ActionSupport {
     public String removeAllFav() throws Exception {
         initRequest();
         setUpFavListBean();
-        favoriteListBean.removeAll();
+        favoriteListBean.remove();
         addActionMessage("Favorite is empty!");
         return SUCCESS;
     }

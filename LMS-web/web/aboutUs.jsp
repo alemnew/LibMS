@@ -11,5 +11,10 @@
     <jsp:param name="id" value="aboutUs.jsp"/>
     <jsp:param name="title" value="MK RC | About Us" />
 </jsp:include>
-        <h1>About us!</h1>
+<div class="welcome">
+    <h1>Welcome to Mahibere Kidusan Research Center Library</h1>
+
+    <img src="images/logo.jpg" width="350" height="338" alt="Mahibere Kidusan"/>
+</div>
+
 <%@include file="footer.jsp" %>

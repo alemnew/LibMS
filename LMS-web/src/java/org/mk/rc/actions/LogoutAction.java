@@ -19,6 +19,7 @@ public class LogoutAction extends ActionSupport {
         Map session = ActionContext.getContext().getSession();
         session.remove("loggedin"); 
         session.remove("user");
+        session.remove("role");
         addActionMessage("Successfully Logout");
         return SUCCESS;
     }

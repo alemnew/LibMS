@@ -185,47 +185,20 @@
                     <ul class="submenu">
                         <li><a href="searchPublication.jsp">Search Publication</a>
                             <ul>
-                                <li><a href="">Search by Title</a></li>
-                                <li><a href="">Search by Author</a></li>
+                                <li><a href="#">Search by Title</a></li>
+                                <li><a href="#">Search by Author</a></li>
 
                             </ul>
                         </li>
-                        <li><a href="">Add Publication</a>
-                            <ul>
-                                <li><a href="editPublication.jsp">Update Existing</a></li>
-                                <li><a href="insertPublication.jsp">Add New Publication</a></li>
-                            </ul>
+                        <li><a href="#">Reserve Publication</a>
+                            
                         </li>
-                        <li><a href="">Manage Publication</a>
-                            <ul>
-                                <li><a href="editPublication.jsp">Update Existing</a></li>
-                                <li><a href="deletePublication.jsp">Delete Publication</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="">New Arrivals</a></li>
+                        
+                        <li><a href="#">New Arrivals</a></li>
                     </ul>
                 </li>
-                <li>
-                    <a href="">Staffs</a>
-                    <ul class="submenu">
-                        <li><a href="searchStaff.jsp">Search Staff</a>
-                            <ul>
-                                <li><a href="">Search by Name</a></li>
-                                <li><a href="">Search by Email</a></li>
-
-                            </ul>
-                        </li>
-                        <li><a href="">Register Staff</a>
-                            <ul>
-                                <li><a href="">Update Existing</a></li>
-                                <li><a href="staffRegistration.jsp">Add New Staff</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="">Manage Staffs</a></li>
-                        <li><a href="">New Staffs</a></li>
-                    </ul>
-                </li>
-                <li>
+                
+                <!--li>
                     <a href="">Users</a>
                     <ul class="submenu">
                         <li><a href="searchUser.jsp">Search User</a>
@@ -244,14 +217,14 @@
                         <li><a href="">Manage Users</a></li>
                         <li><a href="">New users</a></li>
                     </ul>
-                </li>
+                </li-->
                 <li><a href="aboutUs.jsp">About us</a></li>
                 <li><a href="contactUs.jsp">Contact us</a></li>
-                <li id="searchfrm">
+                <!--li id="searchfrm">
                     <form id="searchform2" method="get" action="">
                         <input type="text" size="40" id="searchtxt" class="empty"/>
                     </form>
-                </li>
+                </li-->
             </ul>
         </div>
         <!-- end menu -->

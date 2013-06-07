@@ -6,20 +6,21 @@
 <div id="sidebar">
 
 
-    <!--div id="search">
+    <div id="search">
         <form id="searchform" method="get" action="">
             <fieldset>
                 <input name="s" type="text" size="40" id="searchtxt"  class="empty" />
                 <input type="submit" id="x" value="Search"  class="searchbtn"/>
             </fieldset>
         </form>
-    </div-->
+    </div>
     <br/>
     <ul>
         <li id="qucik_link">
             <h2>Quick Link</h2>
             <ul>
                 <s:if test="%{#session.loggedin == 'true'}">
+                     <s:if test="%{#session.role == 'user'}">
                     <li >
                     <s:url id="myProfile" action="displayProfile">
                         <s:param name="userId">%{#session.user}</s:param>
@@ -35,12 +36,15 @@
                     <li >
                         <a href="getFavListContent">Favorites </a>
                     </li>
+                     </s:if>
+                    <li >
+                        <a href="logouts">Log out </a>
+                    </li>
                 </s:if>
                 <s:else>
-                    <a  href="login.jsp">Login</a>
+                    <li> <a  href="login.jsp">Login</a></li>
+                    <li><a  href="userRegistration.jsp">Register</a></li>
                 </s:else>
-                <li><a href="#">Users</a>  </li>
-                <li><a href="#">New Arrivals</a> </li>
             </ul>
         </li>
         <li id="calendar"> <br/></li>

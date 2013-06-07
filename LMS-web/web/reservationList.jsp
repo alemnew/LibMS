@@ -37,8 +37,7 @@
                     <s:url id="removeReservationURL" action="cancelReservation">
                         <s:param name="id">${id}</s:param>
                     </s:url>
-                    <s:a  href="removeReservationURL">Cancel</s:a> 
-                    </td>
+                </td>
                 </tr>
         </s:iterator>
     </table>

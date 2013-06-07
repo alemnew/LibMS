@@ -27,20 +27,16 @@
                     <s:a href="%{myProfile}" >Profile</s:a>
                     </li>
                     <li>
-                    <s:url id="myReservationURL" action="listReservation">
-                        <s:param name="userId">%{#session.user}</s:param>
-                    </s:url>
-                    <s:a href="%{myReservationURL}">My Reservations </s:a>
-                    </li>
+                   
                     <li >
-                        <a href="getFavListContent">Favorites </a>
+                        <a href="../logouts">Log out </a>
                     </li>
                 </s:if>
                 <s:else>
-                    <a  href="login.jsp">Login</a>
+                    <a  href="logins.jsp">Login</a>
+                    <li><a href="staffRegistration.jsp">Register</a>
                 </s:else>
-                <li><a href="#">Users</a>  </li>
-                <li><a href="#">New Arrivals</a> </li>
+                
             </ul>
         </li>
         <li id="calendar"> <br/></li>
