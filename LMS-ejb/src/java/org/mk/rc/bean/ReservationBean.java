@@ -8,13 +8,13 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import org.mk.rc.intf.ReservationBeanRemote;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import org.mk.rc.entity.Publication;
 import org.mk.rc.entity.Reservation;
+import org.mk.rc.intf.ReservationBeanRemote;
+
 
 /**
  *
@@ -27,6 +27,7 @@ public class ReservationBean implements ReservationBeanRemote {
     private EntityManager em;
 
     @Override
+      
     public String reserve(Long pubId, Long userId) {
          Query query = em.createQuery("SELECT r FROM Reservation r where r.pubId=:pubId AND r.userId=:userId");
         query.setParameter("pubId", pubId);
