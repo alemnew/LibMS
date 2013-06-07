@@ -5,6 +5,7 @@
 package org.mk.rc.intf;
 
 import javax.ejb.Remote;
+import org.mk.rc.entity.Staffs;
 import org.mk.rc.entity.Users;
 
 /**
@@ -15,5 +16,7 @@ import org.mk.rc.entity.Users;
 public interface LoginBeanRemote {
 
     public Users authenticateUser(String email, String password);
+
+    public Staffs authenticateStaff(String email, String password);
     
 }
